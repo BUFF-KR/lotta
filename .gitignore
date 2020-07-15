@@ -1,0 +1,4 @@
+.env
+jupyter-notebook/*
+!jupyter-notebook/notebooks
+jupyter-notebook/notebooks/.ipynb_checkpoints

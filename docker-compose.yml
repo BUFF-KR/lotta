@@ -1,0 +1,27 @@
+version: '3.8'
+
+
+services:
+
+  lotta_mongodb:
+    container_name: '${GROUP}_mongodb'
+    image: mongo:latest
+    ports:
+      - '${PORT_MON}:27017'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: '${MONGO_INITDB_ROOT_USERNAME}'
+      MONGO_INITDB_ROOT_PASSWORD: '${MONGO_INITDB_ROOT_PASSWORD}'
+    restart: always
+
+  lotta_jupyter-notebook:
+    container_name: '${GROUP}_jupyter-notebook'
+    build:
+      context: .
+      dockerfile: Dockerfile_jupyter-notebook
+    volumes:
+      #- './jupyter-notebook:/home/${USER}'
+      - ./jupyter-notebook:/home/lotta
+    ports:
+      - '${PORT_JUP}:8888'
+    stdin_open: true
+    tty: true
